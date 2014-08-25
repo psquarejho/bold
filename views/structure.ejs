@@ -1,0 +1,53 @@
+<% include header.ejs %>
+<h2>Our Team</h2>
+<div class="personblock">
+<% for(var managerId = 0; managerId < managers.length; managerId++) { %>
+<div class="person">
+  <img src="https://image.eveonline.com/Character/<%= managers[managerId].ID %>_128.jpg" height="100" width="100"/>
+  <div class="name"><%= managers[managerId].name %></div>
+  <div class="title"><%= managers[managerId].title %></div>
+  <div class="function"><%= managers[managerId].function %></div>
+</div>
+<% } %>
+</div>
+
+<h2>Our Divisions</h2>
+<table class="structure">
+  <tr><th>Division</th>
+   <th>Reponsible Officer</th>
+  </tr>
+  <tr>
+    <th>Diplomacy</th>
+    <td>Nick Cornax</td>
+  </tr>
+  <tr>
+    <th>Finance</th>
+    <td>Asmodean Shepherd, Robby Rolfe &amp; Thalonia</td>
+  </tr>
+  <tr>
+    <th>Internal Affairs</th>
+    <td>Nick Cornax</td>
+  </tr>
+  <tr>
+    <th>IT</th>
+    <td>marauder84</td>
+  </tr>
+  <tr>
+    <th>Logistics</th>
+    <td>Thalonia</td>
+  </tr>
+  <tr>
+    <th>Military</th>
+    <td>Gavakz Moliko &amp; Tarus Slothenstein</td>
+  </tr>
+  <tr>
+    <th>Recruitment</th>
+    <td>Tarus Slothenstein</td>
+  </tr>
+  <tr>
+    <th>Security</th>
+    <td>Robby Rolfe</td>
+  </tr>
+</table>
+
+<% include footer.ejs %>

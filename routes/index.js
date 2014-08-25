@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
+var path = require('path');
 
 var mainpages = [
       {
@@ -53,7 +55,28 @@ router.get('/info/newtobold', function(req, res) {
     pages: mainpages,
     current: 'info_newtobold',
     path: lookuppath
-  })
-})
+  });
+});
+
+router.get('/team', function(req, res) {
+  var managersFile = path.join(__dirname, '..', 'model', 'managers.json');
+
+  fs.exists(managersFile, function(exists) {
+    if (exists) {
+      fs.readFile(managersFile, 'utf8', function(err, data) {
+        if (err) throw err;
+        var dataa = data.toString();
+        var managers = JSON.parse(dataa || '[]');
+        res.render('structure', {
+          title: 'The Team',
+          pages: mainpages,
+          current: 'team',
+          path: lookuppath,
+          managers: managers
+        }); 
+      });
+    }
+  });
+});
 
 module.exports = router;
