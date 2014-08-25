@@ -38,4 +38,13 @@ router.get('/', function(req, res) {
      });
 });
 
+router.get('/buyback', function(req, res) {
+  res.render('buyback', {
+    title: 'Buyback program',
+    pages: mainpages,
+    current: 'buyback',
+    path: lookuppath
+  });
+});
+
 module.exports = router;

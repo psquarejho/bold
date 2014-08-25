@@ -72,6 +72,10 @@ body{
 	clear: both;	
 }
 
+.contractvalue_section {
+	display: none;	
+}
+
 /*
 	menu
 */
