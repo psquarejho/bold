@@ -5,7 +5,7 @@ install :
 	sudo mkdir -p $(app_dir)
 	sudo cp ./app.js $(app_dir)/app.js
 	sudo cp ./package.json $(app_dir)/package.json
-	sudo cp -r ./bin ./lib ./public ./routes ./node_modules ./views $(app_dir)
+	sudo cp -r ./bin ./lib ./public ./routes ./node_modules ./views ./model $(app_dir)
 	sudo cp ./bold.conf /etc/init/bold.conf
 
 deploy :
