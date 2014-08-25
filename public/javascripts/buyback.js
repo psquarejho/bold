@@ -13,6 +13,7 @@ $(function() {
       }, function(data) {
         $("#contractvalue_input").val(data);
         $(".contractvalue_section").slideDown();
+        $('#contractvalue_input').focus();
      }
   ).error(function() {
    alert("Error"); 
