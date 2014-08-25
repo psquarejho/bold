@@ -9,13 +9,8 @@ install :
 	sudo cp ./bold.conf /etc/init/bold.conf
 
 deploy :
-	# Get rid of old temp installs
-	ssh $(deployment_hostname) sudo rm -rf $(temp_install_dir)
-	# Copy files over to remote machine
-	rsync -r . $(deployment_hostname):$(temp_install_dir)
-	# Install our app to the right location
-	ssh $(deployment_hostname) cd $(temp_install_dir)\; make install
-	ssh $(deployment_hostname) cd $(temp_install_dir)\; make start_app
+	make install
+	make start_app
 
 start_app :
-	sudo start  --no-wait -q hello_world
+	sudo start  --no-wait -q bold
