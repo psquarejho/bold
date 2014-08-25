@@ -13,4 +13,4 @@ deploy :
 	make start_app
 
 start_app :
-	sudo start  --no-wait -q bold
+	sudo (start  --no-wait -q bold || (stop bold && start --no-wait -q bold)
