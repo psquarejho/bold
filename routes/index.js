@@ -23,7 +23,7 @@ var lookuppath = function(name) {
   for (var i = 0; i < mainpages.length; i++) {
     if (name === mainpages[i].name) return mainpages[i].displayname;
   }
-  if (name === "info_newtobold")
+  if (name == "info_newtobold")
     return "/info/newtobold";
 }
 
@@ -46,5 +46,14 @@ router.get('/buyback', function(req, res) {
     path: lookuppath
   });
 });
+
+router.get('/info/newtobold', function(req, res) {
+  res.render('newtocorp', {
+    title: 'New to corp',
+    pages: mainpages,
+    current: 'info_newtobold',
+    path: lookuppath
+  })
+})
 
 module.exports = router;
