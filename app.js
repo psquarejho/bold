@@ -15,21 +15,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.set('mainpages', [
-      {
-        path: '/',
-        name: 'home',
-        displayname: 'Home'
-      },
-      {
-        path: '/team',
-        name: 'team',
-        displayname: 'Team'
-      },
-      {
-        path: '/buyback',
-        name: 'buyback',
-        displayname: 'Buyback'
-      }
+      { path: '/',         name: 'home',     displayname: 'Home'   },
+      { path: '/team',     name: 'team',     displayname: 'Team'   },
+      { path: '/buyback',  name: 'buyback',  displayname: 'Buyback'},
+      { path: '/user',     name: 'user',     displayname: 'User'}
     ]);
   
 app.set('lookuppath', function(name) {
