@@ -1,5 +1,7 @@
 var express = require('express');
-var session = require('express-session')
+var session = require('express-session');
+var passport = require('passport');
+GoogleStrategy = require('passport-google').Strategy;
 var path = require('path');
 var favicon = require('static-favicon');
 var logger = require('morgan');
@@ -17,6 +19,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.set('teststring', JSON.stringify(process.env, null, 2));
 app.set('mainpages', [
       { path: '/',         name: 'home',     displayname: 'Home'   },
       { path: '/team',     name: 'team',     displayname: 'Team'   },
@@ -32,6 +35,17 @@ app.set('lookuppath', function(name) {
     return "/info/newtobold";
 })
 
+passport.use(new GoogleStrategy({
+    returnURL: app.get("appurl") + '/auth/google/return',
+    realm: 'http://localhost:3003/'
+  },
+  function(identifier, profile, done) {
+    User.findOrCreate({ openId: identifier }, function(err, user) {
+      done(err, user);
+    });
+  }
+));
+
 app.use(favicon(path.join(__dirname, 'public', 'images', 'bold.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -39,6 +53,8 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({secret: 'bravo bold', resave: true, saveUninitialized: true}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', routes);
 app.use('/', buyback);
