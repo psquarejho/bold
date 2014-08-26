@@ -13,4 +13,4 @@ deploy :
 	make start_app
 
 start_app :
-	sudo start  --no-wait -q bold_dev || (sudo stop bold ; sudo start --no-wait -q bold)
+	sudo start  --no-wait -q bold_dev || (sudo stop bold_dev ; sudo start --no-wait -q bold_dev)
