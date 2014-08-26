@@ -36,8 +36,8 @@ app.set('lookuppath', function(name) {
 })
 
 passport.use(new GoogleStrategy({
-    returnURL: app.get("appurl") + '/auth/google/return',
-    realm: app.get('appurl') + '/'
+    returnURL: global.appurl + '/auth/google/return',
+    realm: global.appurl + '/'
   },
   function(identifier, profile, done) {
     User.findOrCreate({ openId: identifier }, function(err, user) {

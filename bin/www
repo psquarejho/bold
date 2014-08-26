@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 var debug = require('debug')('boldsite');
+global.appurl = 'http://flugsrud.com:8182';
 var app = require('../app');
 
 app.set('port',  3003);
-app.set('appurl', 'http://flugsrud.com:8182');
 
 var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
