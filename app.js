@@ -1,4 +1,5 @@
 var express = require('express');
+var session = require('express-session')
 var path = require('path');
 var favicon = require('static-favicon');
 var logger = require('morgan');
@@ -10,6 +11,7 @@ var buyback = require('./routes/buyback');
 var secure = require('./routes/secure');
 
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -36,6 +38,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({secret: 'bravo bold', resave: true, saveUninitialized: true}));
 
 app.use('/', routes);
 app.use('/', buyback);
