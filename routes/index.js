@@ -75,6 +75,9 @@ router.get('/team', function(req, res) {
           managers: managers
         }); 
       });
+    } else {
+      res.statusCode = 500;
+      res.end("Missing managers.json file");
     }
   });
 });
