@@ -7,3 +7,5 @@ router.get('/user', function(req, res) {
     current: 'user',
      });
 });
+
+module.exports = router;
