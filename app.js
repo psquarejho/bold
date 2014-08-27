@@ -1,7 +1,7 @@
 var express = require('express');
 var session = require('express-session');
 var passport = require('passport');
-GoogleStrategy = require('passport-google').Strategy;
+var GooglePlusStrategy = require('passport-google-plus');
 var path = require('path');
 var favicon = require('static-favicon');
 var logger = require('morgan');
@@ -35,16 +35,26 @@ app.set('lookuppath', function(name) {
     return "/info/newtobold";
 })
 
-passport.use(new GoogleStrategy({
-    returnURL: global.appurl + '/auth/google/return',
-    realm: global.appurl + '/'
+passport.use(new GooglePlusStrategy({
+    clientId: '511471210958-03esligoa1m3g71cfe4d2qn7kkkt1nce.apps.googleusercontent.com',
+    clientSecret: 'D3NFhE4UroSGlbCIhTnjxVRp'
   },
-  function(identifier, profile, done) {
-    User.findOrCreate({ openId: identifier }, function(err, user) {
-      done(err, user);
-    });
+  function(tokens, profile, done) {
+    // Create or update user, call done() when complete...
+    done(null, profile, tokens);
   }
 ));
+
+passport.serializeUser(function(user, done) {
+  done(null, 0);
+});
+
+passport.deserializeUser(function(id, done) {
+  done(null, {name:'Tor Livar', id:'0'}); return;
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
 
 app.use(favicon(path.join(__dirname, 'public', 'images', 'bold.ico')));
 app.use(logger('dev'));
