@@ -1,5 +1,6 @@
 app_dir = /srv/nodejs/bold
-temp_install_dir = /tmp/bold
+app_dir_dev = /srv/nodejs/bold_dev
+
 
 install :
 	sudo mkdir -p $(app_dir)
@@ -14,3 +15,17 @@ deploy :
 
 start_app :
 	sudo start  --no-wait -q bold || (sudo stop bold ; sudo start --no-wait -q bold)
+	
+install_dev :
+	sudo mkdir -p $(app_dir_dev)
+	sudo cp ./app.js $(app_dir_dev)/app.js
+	sudo cp ./package.json $(app_dir_dev)/package.json
+	sudo cp -r ./bin ./lib ./public ./routes ./node_modules ./views ./model $(app_dir_dev)
+	sudo cp ./bold_dev.conf /etc/init/bold_dev.conf
+
+deploy_dev :
+	make install_dev
+	make start_app_dev
+
+start_app_dev :
+	sudo start  --no-wait -q bold_dev || (sudo stop bold_dev ; sudo start --no-wait -q bold_dev)
