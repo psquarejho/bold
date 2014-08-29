@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 var path = require('path');
+var http = require('https');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -22,6 +23,25 @@ router.get('/info/newtobold', function(req, res) {
   res.render('newtocorp', {
     title: 'New to corp',
     current: 'info_newtobold',
+  });
+});
+
+router.param('eve_id', function (req, res, next, id) {
+  if (parseInt(id).toString() == id) {
+    req.eve_id = id;
+    next(null);
+  } else {
+    next(new Error('ID is not a number'));
+  } 
+  
+});
+
+router.get('/eveimages/:eve_id', function(req, res){
+  http.get('https://image.eveonline.com/Character/'+ req.eve_id + '_128.jpg', function(eveRes) {
+    eveRes.pipe(res);
+  }).on('error', function(e) {
+    res.statusCode = 404;
+    res.end('Could not find picture');
   });
 });
 
