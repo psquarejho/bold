@@ -51,7 +51,7 @@ body{
     font-size: 12px;
     line-height: 18px;
     color: #ffffff;
-    background: #000000 url(images/bg.jpg) no-repeat center 87px fixed;
+    background: #000000 url(/images/bg.jpg) no-repeat center 87px fixed;
 	
 }
 
