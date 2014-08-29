@@ -5,8 +5,8 @@
     { "name": "Thalonia", "ID": "758027032", "title": "Director", "function": "Logistics" },
     { "name": "Gavakz Moliko", "ID": "91196290", "title": "Officer", "function": "Military Director/PvP" },
     { "name": "Lacks Pants", "ID": "94449671", "title": "Officer", "function": "PvP/HR" },
-    { "name": "Lefty Leftfield", "ID": "93070225", "title": "Officer", "function": "" }
+    { "name": "Lefty Leftfield", "ID": "93070225", "title": "Officer", "function": "" },
     { "name": "Nick Cornax", "ID": "92918679", "title": "Officer", "function": "Diplo/HR/Recruitment" },
-    { "name": "Victor Atusid", "ID": "93130360", "title": "Officer", "function": "Recruitment" },
+    { "name": "Victor Atusid", "ID": "93130360", "title": "Officer", "function": "Recruitment" }
     
     ]
