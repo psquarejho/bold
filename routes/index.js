@@ -3,6 +3,7 @@ var router = express.Router();
 var fs = require('fs');
 var path = require('path');
 var http = require('https');
+var imgcache = require('./../lib/imagecache');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -37,12 +38,13 @@ router.param('eve_id', function (req, res, next, id) {
 });
 
 router.get('/eveimages/:eve_id', function(req, res){
-  http.get('https://image.eveonline.com/Character/'+ req.eve_id + '_128.jpg', function(eveRes) {
-    eveRes.pipe(res);
-  }).on('error', function(e) {
-    res.statusCode = 404;
-    res.end('Could not find picture');
-  });
+  imgcache(req.eve_id, res);
+  // http.get('https://image.eveonline.com/Character/'+ req.eve_id + '_128.jpg', function(eveRes) {
+    // eveRes.pipe(res);
+  // }).on('error', function(e) {
+    // res.statusCode = 404;
+    // res.end('Could not find picture');
+  // });
 });
 
 router.get('/team', function(req, res) {
