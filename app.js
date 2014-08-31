@@ -14,23 +14,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.set('mainpages', [
-      {
-        path: '/',
-        name: 'home',
-        displayname: 'Home'
-      },
-      {
-        path: '/team',
-        name: 'team',
-        displayname: 'Team'
-      },
-      {
-        path: '/buyback',
-        name: 'buyback',
-        displayname: 'Buyback'
-      }
-    ]);
+app.set('mainpages', require('./model/mainmenu.json'));
   
 app.set('lookuppath', function(name) {
   for (var i = 0; i < app.settings.mainpages.length; i++) {
