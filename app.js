@@ -14,14 +14,16 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.set('mainpages', require('./model/mainmenu.json'));
+var pagelist = require('./model/mainmenu.json');
+app.set('mainpages', pagelist.mainpages);
   
 app.set('lookuppath', function(name) {
   for (var i = 0; i < app.settings.mainpages.length; i++) {
     if (name === app.settings.mainpages[i].name) return app.settings.mainpages[i].displayname;
   }
-  if (name == "info_newtobold")
-    return "/info/newtobold";
+  if (pagelist[name])
+    return pagelist[name];
+  return "/name";
 })
 
 app.use(favicon(path.join(__dirname, 'public', 'images', 'bold.ico')));
