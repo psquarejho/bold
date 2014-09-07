@@ -14,7 +14,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.set('mainpages', [
+app.locals.mainpages = [
       {
         path: '/',
         name: 'home',
@@ -30,15 +30,14 @@ app.set('mainpages', [
         name: 'buyback',
         displayname: 'Buyback'
       }
-    ]);
-  
-app.set('lookuppath', function(name) {
-  for (var i = 0; i < app.settings.mainpages.length; i++) {
-    if (name === app.settings.mainpages[i].name) return app.settings.mainpages[i].displayname;
-  }
-  if (name == "info_newtobold")
-    return "/info/newtobold";
-})
+    ];
+app.locals.lookuppath = function(name) {
+      for (var i = 0; i < app.locals.mainpages.length; i++) {
+        if (name === app.locals.mainpages[i].name) return app.locals.mainpages[i].displayname;
+      }
+      if (name == "info_newtobold")
+        return "/info/newtobold";
+    };
 
 app.use(favicon(path.join(__dirname, 'public', 'images', 'bold.ico')));
 app.use(logger('dev'));
