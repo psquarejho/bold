@@ -16,6 +16,7 @@
     "request": "~2.40.0",
     "express-session": "~1.7.6",
     "passport": "~0.2.0",
-    "mongoose": "~3.8.15"
+    "mongoose": "~3.8.15",
+    "formidable": "~1.0.15"
   }
 }

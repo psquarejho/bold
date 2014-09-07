@@ -28,7 +28,7 @@
       <ul>
         <% var path = lookuppath %>
       	<% for (var i = 0; i < mainpages.length; i++) { %>
-        <li><a href="<%= mainpages[i].path %>" <% if(current === mainpages[i].name || (!current && i == 0)) { %> class="active"<% } %>><%= mainpages[i].displayname %></a></li>
+        <li><a href="<%= mainpages[i].path %>" <% if((!current && i == 0) || current == mainpages[i].name) { %> class="active"<% } %>><%= mainpages[i].displayname %></a></li>
         <% } %>
       </ul>
 
