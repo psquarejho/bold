@@ -6,7 +6,11 @@ var join = path.join;
 var formidable = require('formidable');
 var Slideshow = require('../model/index_slideshow');
 
-router.get('/slides/upload', function(req, res){
+function getFilePath(name) {
+  return join(__dirname, '..', 'public', 'images', 'slideshow', name);
+}
+
+router.get('/slides/upload', function(req, res, next){
   Slideshow.find({}, function(err, photos) {
     if (err) return next(err);
       res.render('slides/upload', {
@@ -15,6 +19,18 @@ router.get('/slides/upload', function(req, res){
         photos: photos
     });
   });
+});
+
+router.get('/slides/delete', function(req,res, next){
+  var file = req.query['image'];
+  debugger;
+  Slideshow.remove({path:file}, function(err){
+    if (err) return next(err);
+    fs.unlink(getFilePath(file), function(err){
+      if (err) return next(err);
+      res.redirect('/slides/upload');
+    });
+  })
 });
 
 router.post('/slides/upload', function(req, res, next) {
@@ -37,7 +53,7 @@ router.post('/slides/upload', function(req, res, next) {
   var img = req.upload.file;
   var name = img.name;
   var caption = req.upload.caption || '';
-  var path = join(__dirname, '..', 'public', 'images', 'slideshow', name);
+  var path = getFilePath(name);
   fs.rename(img.path, path, function(err){
     if (err) return next(err);
       
@@ -46,7 +62,7 @@ router.post('/slides/upload', function(req, res, next) {
       path: img.name
     }, function (err) {
       if (err) return next(err);
-      res.redirect('/');
+      res.redirect('/slides/upload');
     })
   })
   

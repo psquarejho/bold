@@ -4,13 +4,17 @@ var fs = require('fs');
 var path = require('path');
 var http = require('https');
 var imgcache = require('./../lib/imagecache');
+var Slideshow = require('../model/index_slideshow');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { 
-    title: 'Home',
-    current: 'home',
-     });
+  Slideshow.find({}, function(err, photos) {
+      res.render('index', { 
+        title: 'Home',
+        current: 'home',
+        photos: photos 
+         });
+   });
 });
 
 router.get('/buyback', function(req, res) {
