@@ -28,7 +28,7 @@ router.get('/slides/delete', function(req,res, next){
     if (err) return next(err);
     fs.unlink(getFilePath(file), function(err){
       if (err) return next(err);
-      res.redirect('/slides/upload');
+      res.redirect('upload');
     });
   })
 });
@@ -62,7 +62,7 @@ router.post('/slides/upload', function(req, res, next) {
       path: img.name
     }, function (err) {
       if (err) return next(err);
-      res.redirect('/slides/upload');
+      res.redirect('upload');
     })
   })
   
