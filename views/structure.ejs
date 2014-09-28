@@ -1,6 +1,15 @@
 <% include header.ejs %>
 <h2>Our Team</h2>
 <div class="personblock">
+<%
+	function compareManagers(a, b) {
+	  var cmp =  a.title.localeCompare(b.title);
+	  if (!cmp)
+	    cmp = a.name.localeCompare(b.name);
+	  return cmp;
+	}
+	managers.sort(compareManagers);
+%>
 <% for(var managerId = 0; managerId < managers.length; managerId++) { %>
 <div class="person">
   <img src="/eveimages/<%= managers[managerId].ID %>" height="100" width="100"/>
