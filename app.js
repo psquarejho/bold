@@ -9,6 +9,9 @@ var routes = require('./routes/index');
 var buyback = require('./routes/buyback');
 var slideshow = require('./routes/slideshow');
 
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+
 var app = express();
 
 // view engine setup
@@ -42,6 +45,14 @@ app.locals.lookuppath = function(name) {
 
 app.use(favicon(path.join(__dirname, 'public', 'images', 'bold.ico')));
 app.use(logger('dev'));
+app.use(session({
+    secret: 'aløsjd fløaøljk os fpae afø ølsjf aø se ds',
+    saveUninitialized: true,
+    resave: true,
+    store: new MongoStore({
+      db : 'boldsite',
+    })
+  }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
