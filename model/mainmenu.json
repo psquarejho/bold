@@ -1,0 +1,8 @@
+{
+    "mainpages": [
+      { "path": "/",        "name": "home",     "displayname": "Home"     },
+      { "path": "/team",    "name": "team",     "displayname": "Team"     },
+      { "path": "/buyback", "name": "buyback",  "displayname": "Buyback"  }
+    ],
+    "info_newtobold": "/info/newtobold"
+}
