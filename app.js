@@ -34,34 +34,6 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.locals.mainpages = [
-      {
-        path: '/',
-        name: 'home',
-        displayname: 'Home'
-      },
-      {
-        path: '/team',
-        name: 'team',
-        displayname: 'Team'
-      },
-      {
-        path: '/buyback',
-        name: 'buyback',
-        displayname: 'Buyback'
-      }
-    ];
-app.locals.lookuppath = function(name) {
-      for (var i = 0; i < app.locals.mainpages.length; i++) {
-        if (name === app.locals.mainpages[i].name) return app.locals.mainpages[i].displayname;
-      }
-      if (name == "info_newtobold")
-        return "/info/newtobold";
-    };
-app.locals.title = "BO_LD";
-app.locals.current = "";
-app.locals.username = "";
-
 app.use(favicon(path.join(__dirname, 'public', 'images', 'bold.ico')));
 app.use(logger('dev'));
 

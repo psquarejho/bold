@@ -34,6 +34,16 @@ router.use(function(req,res,next) {
         displayname: 'Buyback'
       }
     ];
+    
+  res.locals.lookuppath = function(name) {
+      for (var i = 0; i < res.locals.mainpages.length; i++) {
+        if (name === res.locals.mainpages[i].name) return res.locals.mainpages[i].displayname;
+      }
+      if (name == "info_newtobold")
+        return "/info/newtobold";
+    };
+  res.locals.title = "BO_LD";
+  res.locals.current = "";
   return next();
 })
 
