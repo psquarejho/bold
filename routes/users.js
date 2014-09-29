@@ -39,8 +39,17 @@ router.get('/logout', function(req,res) {
   res.redirect('/');
 })
 
-router.post('/login', passport.authenticate('local', { successRedirect: '/',
+router.post('/login', passport.authenticate('local', { successRedirect: '/loginredirect',
                                    failureRedirect: '/login', failureFlash: true }));
+
+router.get('/loginredirect', function(req,res) {
+  var redirect = req.session.loginredirect;
+  if (redirect) {
+    req.session.loginredirect = false;
+    return res.redirect(redirect);
+  }
+  res.redirect("/");
+});
 
 router.get('/currentuser', 
   function(req, res) {

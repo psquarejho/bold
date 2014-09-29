@@ -10,6 +10,7 @@ function getFilePath(name) {
   return join(__dirname, '..', 'public', 'images', 'slideshow', name);
 }
 
+
 router.get('/slides/upload', function(req, res, next){
   Slideshow.find({}, function(err, photos) {
     if (err) return next(err);

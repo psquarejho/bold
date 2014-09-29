@@ -10,7 +10,7 @@ var User = require('./model/User');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var buyback = require('./routes/buyback');
-var slideshow = require('./routes/slideshow');
+var admin = require('./routes/admin');
 
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
@@ -99,7 +99,7 @@ app.use('/', users);
 app.use('/', routes);
 app.use('/', buyback);
 
-app.use('/admin/', slideshow);
+app.use('/admin/', admin);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

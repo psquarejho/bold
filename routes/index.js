@@ -8,12 +8,32 @@ var Slideshow = require('../model/index_slideshow');
 var flash = require('connect-flash');
 var passport = require('passport');
 
+
+
 router.use(function(req,res,next) {
   if (req.isAuthenticated()){
     res.locals.username = req.user.username;
   } else {
     res.locals.username = "";
   }
+  
+  res.locals.mainpages = [
+      {
+        path: '/',
+        name: 'home',
+        displayname: 'Home'
+      },
+      {
+        path: '/team',
+        name: 'team',
+        displayname: 'Team'
+      },
+      {
+        path: '/buyback',
+        name: 'buyback',
+        displayname: 'Buyback'
+      }
+    ];
   return next();
 })
 
