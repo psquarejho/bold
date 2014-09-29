@@ -35,7 +35,6 @@ $(function() {
         password: passwd
       }, function(data) {
         if (data === "OK") {
-          alert("Relocating");
           window.location.assign("/login");
         } else {
           $("#usererror").html("Registration failed. Try a different username.");

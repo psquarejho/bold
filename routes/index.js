@@ -8,17 +8,14 @@ var Slideshow = require('../model/index_slideshow');
 var flash = require('connect-flash');
 var passport = require('passport');
 
-/*
-router.use(function (req, res, next) {
-  debugger;
-  passport.authenticate('local', function (err, user, info) {
-    if (err) { return next(err);}
-    if (!user) { req.username = ""; return next(); }
-    req.username = user.username;
-    return next();
-  })(req,res,next);
-});
-*/
+router.use(function(req,res,next) {
+  if (req.isAuthenticated()){
+    res.locals.username = req.user.username;
+  } else {
+    res.locals.username = "";
+  }
+  return next();
+})
 
 /* GET home page. */
 router.get('/', function(req, res) {

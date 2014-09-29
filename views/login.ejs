@@ -1,5 +1,8 @@
 <% include header.ejs %>
 <h2>Log in</h2>
+<% if (loginerror) { %>
+	<div id="loginerror"><%=loginerror%></div>
+<% } %>
   <div>
   <form action="/login" method="post">
     <div>
@@ -15,4 +18,5 @@
     </div>
 </form>
  </div> 
+ <div><a href="/register">Register new user</a></div>
 <% include footer.ejs %>

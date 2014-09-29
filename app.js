@@ -85,6 +85,15 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Make sure all views have access to username
+app.use(function(req,res,next) {
+  if (req.isAuthenticated()){
+    res.locals.username = req.user.username;
+  } else {
+    res.locals.username = "";
+  }
+  return next();
+})
 
 app.use('/', users);
 app.use('/', routes);
