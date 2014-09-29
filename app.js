@@ -20,6 +20,7 @@ mongoose.connect('mongodb://localhost/boldsite');
 
 var passport = require('passport');
 
+debugger;
 // use static authenticate method of model in LocalStrategy
 passport.use(User.createStrategy());
 

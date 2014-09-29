@@ -20,10 +20,17 @@ router.post('/register', function(req, res) {
   });
 });
 
-router.post('/login', function(req, res) {
-  debugger;
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login' })
-});
+router.post('/login', passport.authenticate('local', { successRedirect: '/',
+                                   failureRedirect: '/login' }));
+
+router.get('/currentuser', 
+  function(req, res) {
+    if (req.isAuthenticated()) {
+      res.end(req.user.username);
+    } else {
+      res.end('');
+    }
+  });
+
 
 module.exports = router;

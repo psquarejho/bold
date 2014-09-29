@@ -8,7 +8,7 @@ var Slideshow = require('../model/index_slideshow');
 var flash = require('connect-flash');
 var passport = require('passport');
 
-
+/*
 router.use(function (req, res, next) {
   debugger;
   passport.authenticate('local', function (err, user, info) {
@@ -18,6 +18,7 @@ router.use(function (req, res, next) {
     return next();
   })(req,res,next);
 });
+*/
 
 /* GET home page. */
 router.get('/', function(req, res) {
