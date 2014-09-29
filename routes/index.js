@@ -5,14 +5,28 @@ var path = require('path');
 var http = require('https');
 var imgcache = require('./../lib/imagecache');
 var Slideshow = require('../model/index_slideshow');
+var flash = require('connect-flash');
+var passport = require('passport');
+
+
+router.use(function (req, res, next) {
+  debugger;
+  passport.authenticate('local', function (err, user, info) {
+    if (err) { return next(err);}
+    if (!user) { req.username = ""; return next(); }
+    req.username = user.username;
+    return next();
+  })(req,res,next);
+});
 
 /* GET home page. */
 router.get('/', function(req, res) {
   Slideshow.find({}, function(err, photos) {
+    debugger;
       res.render('index', { 
         title: 'Home',
         current: 'home',
-        photos: photos 
+        photos: photos
          });
    });
 });
@@ -23,6 +37,7 @@ router.get('/buyback', function(req, res) {
     current: 'buyback',
   });
 });
+
 
 router.get('/info/newtobold', function(req, res) {
   res.render('newtocorp', {

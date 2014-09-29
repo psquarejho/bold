@@ -4,13 +4,28 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var flash = require('connect-flash');
+var User = require('./model/User');
 
 var routes = require('./routes/index');
+var users = require('./routes/users');
 var buyback = require('./routes/buyback');
 var slideshow = require('./routes/slideshow');
 
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/boldsite');
+
+var passport = require('passport');
+
+// use static authenticate method of model in LocalStrategy
+passport.use(User.createStrategy());
+
+// use static serialize and deserialize of model for passport session support
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 var app = express();
 
@@ -42,9 +57,19 @@ app.locals.lookuppath = function(name) {
       if (name == "info_newtobold")
         return "/info/newtobold";
     };
+app.locals.title = "BO_LD";
+app.locals.current = "";
+app.locals.username = "";
 
 app.use(favicon(path.join(__dirname, 'public', 'images', 'bold.ico')));
 app.use(logger('dev'));
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+
+app.use(cookieParser('aløsjd fløaøljk os fpae afø ølsjf aø se ds'));
 app.use(session({
     secret: 'aløsjd fløaøljk os fpae afø ølsjf aø se ds',
     saveUninitialized: true,
@@ -53,13 +78,17 @@ app.use(session({
       db : 'boldsite',
     })
   }));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+app.use('/', users);
 app.use('/', routes);
 app.use('/', buyback);
+
 app.use('/admin/', slideshow);
 
 /// catch 404 and forward to error handler

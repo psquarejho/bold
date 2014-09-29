@@ -18,6 +18,9 @@
     "passport": "~0.2.0",
     "mongoose": "~3.8.15",
     "formidable": "~1.0.15",
-    "connect-mongo": "~0.4.1"
+    "connect-mongo": "~0.4.1",
+    "connect-flash": "~0.1.1",
+    "passport-local-mongoose": "~0.3.0",
+    "passport-local": "~1.0.0"
   }
 }

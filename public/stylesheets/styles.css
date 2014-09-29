@@ -524,3 +524,9 @@ table.team th, table.structure th {
   text-align: right;
   font-size: 120%;
 }
+
+.formerror {
+	display: inline;
+	color: red;
+	margin-left: 3px;
+}

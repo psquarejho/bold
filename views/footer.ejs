@@ -47,7 +47,13 @@
     </div>
 
     <div id="content_bg_bot"></div>
-
+	<div id="user_info">
+	<% if (username) { %>
+		Logged in as <%=username%>.
+	<% } else { %>
+		Log in <a href="/login">here</a>
+	<% } %>
+	</div>
     <div id="footer_bot">
       <p>Copyright 2014. <!-- Do not remove -->Designed by <a href=
       "http://www.myfreecsstemplates.com/" title=
