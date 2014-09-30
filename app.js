@@ -67,10 +67,9 @@ app.use(function(req,res,next) {
   return next();
 })
 
+app.use('/', routes); // THIS MUST BE FIRST
 app.use('/', users);
-app.use('/', routes);
 app.use('/', buyback);
-
 app.use('/admin/', admin);
 
 /// catch 404 and forward to error handler
