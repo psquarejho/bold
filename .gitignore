@@ -1,5 +1,5 @@
 # Ignore slideshow folder (populated on site)
-public/images/slideshow/*
+public/images/slideshow/**
 
 # Ignore local debug log
 npm-debug.log
