@@ -1,7 +1,3 @@
-/**
- * @author Tor Livar Flugsrud
- */
-
 $(function() {
   
   $("#buybackcalculator").submit(function(event) {

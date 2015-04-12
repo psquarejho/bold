@@ -3,13 +3,13 @@
         <div id="wrapper">
           <div id="slider-wrapper">
             <div id="slider" class="nivoSlider">
-              <img src="/images/slider/station.jpg" alt="Our home" title="#stationcaption"/>
-              <img src="/images/slider/titan.jpg" alt="Our home" title="#titancaption"/>
-              <img src="/images/slider/logi.jpg" alt="Our home" title="#logicaption"/>
+              <% photos.forEach(function(photo){ %>
+              <img src="/images/slideshow/<%=photo.path%>" alt="<%=photo.caption%>" title="#<%=photo.path.replace('.','')%>_caption"/>
+              <% }) %>
         	  </div>
-            <div id="stationcaption" class="nivo-html-caption">Our home in CZK-ZQ</div>
-            <div id="titancaption" class="nivo-html-caption">Waiting to go on an op</div>
-            <div id="logicaption" class="nivo-html-caption">The magic logistics triangle</div>
+        	<% photos.forEach(function(photo){ %>
+            	<div id="<%=photo.path.replace('.','')%>_caption" class="nivo-html-caption"><%=photo.caption%></div>
+            <% }) %>
           </div>
         </div>
       </div>

@@ -26,10 +26,9 @@
   <div id="wrapper1">
     <div id="menu">
       <ul>
-        <% var pages = settings.mainpages %>
-        <% var path = settings.lookuppath %>
-      	<% for (var i = 0; i < pages.length; i++) { %>
-        <li><a href="<%= pages[i].path %>" <% if(current === pages[i].name || (!current && i == 0)) { %> class="active"<% } %>><%= pages[i].displayname %></a></li>
+        <% var path = lookuppath %>
+      	<% for (var i = 0; i < mainpages.length; i++) { %>
+        <li><a href="<%= mainpages[i].path %>" <% if((!current && i == 0) || current == mainpages[i].name) { %> class="active"<% } %>><%= mainpages[i].displayname %></a></li>
         <% } %>
       </ul>
 

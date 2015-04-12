@@ -4,13 +4,59 @@ var fs = require('fs');
 var path = require('path');
 var http = require('https');
 var imgcache = require('./../lib/imagecache');
+var Slideshow = require('../model/index_slideshow');
+var flash = require('connect-flash');
+var passport = require('passport');
+
+
+
+router.use(function(req,res,next) {
+  if (req.isAuthenticated()){
+    res.locals.username = req.user.username;
+  } else {
+    res.locals.username = "";
+  }
+  
+  res.locals.mainpages = [
+      {
+        path: '/',
+        name: 'home',
+        displayname: 'Home'
+      },
+      {
+        path: '/team',
+        name: 'team',
+        displayname: 'Team'
+      },
+      {
+        path: '/buyback',
+        name: 'buyback',
+        displayname: 'Buyback'
+      }
+    ];
+    
+  res.locals.lookuppath = function(name) {
+      for (var i = 0; i < res.locals.mainpages.length; i++) {
+        if (name === res.locals.mainpages[i].name) return res.locals.mainpages[i].displayname;
+      }
+      if (name == "info_newtobold")
+        return "/info/newtobold";
+    };
+  res.locals.title = "BO_LD";
+  res.locals.current = "";
+  return next();
+})
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { 
-    title: 'Home',
-    current: 'home',
-     });
+  Slideshow.find({}, function(err, photos) {
+    debugger;
+      res.render('index', { 
+        title: 'Home',
+        current: 'home',
+        photos: photos
+         });
+   });
 });
 
 router.get('/buyback', function(req, res) {
@@ -19,6 +65,7 @@ router.get('/buyback', function(req, res) {
     current: 'buyback',
   });
 });
+
 
 router.get('/info/newtobold', function(req, res) {
   res.render('newtocorp', {

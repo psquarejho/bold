@@ -3,7 +3,7 @@
           <h3>Info</h3>
           <div class="footer_text">
             <ul class="ls">
-              <li><a href="<%= settings.lookuppath('info_newtobold') %>">Info for new members</a></li>
+              <li><a href="<%= lookuppath('info_newtobold') %>">Info for new members</a></li>
               <li><a href="https://wiki.braveineve.com/dojo/guides/authorize_core_setup" target="_blank">How to setup CORE auth and Mumble</a></li>
               <li><a href="http://imgur.com/a/vVkW2#0" target="_blank">How to setup BRAVE jabber</a></li>
             </ul>
@@ -47,7 +47,13 @@
     </div>
 
     <div id="content_bg_bot"></div>
-
+	<div id="user_info">
+	<% if (username) { %>
+		Logged in as <%=username%>. <a href="/logout">Log out</a>.
+	<% } else { %>
+		Log in <a href="/login">here</a>
+	<% } %>
+	</div>
     <div id="footer_bot">
       <p>Copyright 2014. <!-- Do not remove -->Designed by <a href=
       "http://www.myfreecsstemplates.com/" title=
